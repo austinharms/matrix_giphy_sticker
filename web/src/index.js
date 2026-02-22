@@ -91,44 +91,44 @@ class App extends Component {
     }
 
     async updateTrendingGifs() {
-        // this.setState({
-        //     trending: {
-        //         loading: true,
-        //         error_msg: null,
-        //         results: null,
-        //     }
-        // });
+        this.setState({
+            trending: {
+                loading: true,
+                error_msg: null,
+                results: null,
+            }
+        });
 
-        // try {
-        //     const resp = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}`);
-        //     // TODO handle error responses properly?
-        //     const data = await resp.json();
-        //     if (data.data.length === 0) {
-        //         this.setState({
-        //             trending: {
-        //                 loading: false,
-        //                 error_msg: "No Results",
-        //                 results: [],
-        //             }
-        //         });
-        //     } else {
-        //         this.setState({
-        //             trending: {
-        //                 loading: false,
-        //                 error_msg: null,
-        //                 results: data.data,
-        //             }
-        //         });
-        //     }
-        // } catch (error) {
-        //     this.setState({
-        //         trending: {
-        //             loading: false,
-        //             error_msg: error,
-        //             results: [],
-        //         }
-        //     });
-        // }
+        try {
+            const resp = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}`);
+            // TODO handle error responses properly?
+            const data = await resp.json();
+            if (data.data.length === 0) {
+                this.setState({
+                    trending: {
+                        loading: false,
+                        error_msg: "No Results",
+                        results: [],
+                    }
+                });
+            } else {
+                this.setState({
+                    trending: {
+                        loading: false,
+                        error_msg: null,
+                        results: data.data,
+                    }
+                });
+            }
+        } catch (error) {
+            this.setState({
+                trending: {
+                    loading: false,
+                    error_msg: error,
+                    results: [],
+                }
+            });
+        }
     }
 
     async searchGifs(search_text) {
