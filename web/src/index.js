@@ -177,7 +177,7 @@ class App extends Component {
 
     updateFrequentGifs(gif = null) {
         if (gif !== null) {
-            let gif_data = this.frequent_gifs.find(([,,gif]) => gif.id == gif.id);
+            let gif_data = this.frequent_gifs.find(([,,g]) => g.id == gif.id);
             if (!gif_data) {
                 gif_data = [0, Date.now(), gif];
                 this.frequent_gifs.push(gif_data);
@@ -219,19 +219,19 @@ class App extends Component {
             // `name` is for Element Web (and also the spec)
             // Element Android uses content -> body as the name
             name: gif.title,
-        }
+        };
         // Custom field that stores the ID even for non-telegram stickers
-        delete data.content.id
+        delete data.content.id;
 
         // This is for Element iOS
         const widgetData = {
             ...data,
             description: gif.title,
             file: gif.id + ".webp"
-        }
-        delete widgetData.content.filename
+        };
+        delete widgetData.content.filename;
         // Element iOS explodes if there are extra fields present
-        delete widgetData.content["net.maunium.telegram.sticker"]
+        delete widgetData.content["net.maunium.telegram.sticker"];
 
         window.parent.postMessage({
             api: "fromWidget",
